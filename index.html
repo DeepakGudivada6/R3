@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a31">
+  <meta name="description" content="TrueCart AI helps shoppers compare a grounded sample catalogue and set transparent local price alerts.">
+  <title>TrueCart AI — Shop with proof</title>
+  <link rel="stylesheet" href="styles.css?v=20261030-4">
+</head>
+<body>
+  <a class="skip-link" href="#catalogueShelf">Skip to products</a>
+  <div class="app-shell">
+    <header class="topbar" id="top">
+      <a class="brand" href="#top" aria-label="TrueCart AI home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M7 11.5h22l-2 18H9l-2-18Z"/><path d="M12 12V9a6 6 0 0 1 12 0v3M13.5 19.5l3 3 6-6"/></svg></span>
+        <span class="brand-copy"><b>TrueCart <em>AI</em></b><small>Shop smart. Trust the facts.</small></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#top">Home</a>
+        <a class="nav-link" href="#catalogueShelf">Products</a>
+        <a class="nav-link" href="#categoryFilters">Categories</a>
+        <a class="nav-link" href="#alertsPanel">Price alerts</a>
+        <button class="nav-link nav-button" id="policyNav" type="button">Store policy</button>
+      </nav>
+
+      <form id="headerSearchForm" class="header-search" role="search">
+        <label class="sr-only" for="headerSearch">Search products or ask TrueCart AI</label>
+        <span aria-hidden="true">⌕</span>
+        <input id="headerSearch" type="search" maxlength="500" autocomplete="off" placeholder="Search products or ask TrueCart AI…">
+        <button type="submit" aria-label="Search">↗</button>
+      </form>
+
+      <div class="topbar-actions">
+        <span class="mode-pill"><i></i> Sample catalogue</span>
+        <button class="icon-button" id="aboutButton" type="button" aria-label="About TrueCart AI">i</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="sparkle">✦</span> THE SHOPPING ASSISTANT THAT SHOWS ITS WORK</div>
+          <h1>Good finds.<br><em>Clear proof.</em></h1>
+          <p>Browse 200 balanced sample products, compare catalogue facts, and ask questions in plain language. No invented retailer prices.</p>
+          <div class="hero-actions">
+            <a class="hero-primary" href="#catalogueShelf">Explore 200 products <span>↘</span></a>
+            <a class="hero-secondary" href="#shoppingDesk">Ask the assistant <span>↗</span></a>
+          </div>
+          <div class="hero-metrics" aria-label="Demo catalogue overview">
+            <div><b>200</b><span>sample picks</span></div>
+            <div><b>10</b><span>categories</span></div>
+            <div><b>2</b><span>retailer searches</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Illustration of a product card with verified catalogue data">
+          <div class="art-glow"></div>
+          <div class="art-ring ring-a"></div><div class="art-ring ring-b"></div>
+          <div class="hero-product-card">
+            <span class="hero-product-tag">CATALOGUE SAMPLE</span>
+            <div class="hero-product-emoji" aria-hidden="true">🎧</div>
+            <div class="hero-product-name">A better choice starts with evidence.</div>
+            <div class="hero-product-price"><b>Snapshot price</b><span>Product ID attached</span></div>
+            <div class="hero-product-check">✓ Evidence attached</div>
+          </div>
+          <div class="hero-float float-one">✦ Honest answers</div>
+          <div class="hero-float float-two">₹ Snapshot price</div>
+        </div>
+        <p class="hero-disclosure">Hackathon demo data is synthetic and frozen. Retailer buttons open search pages; they do not verify a matching product or current price.</p>
+      </section>
+
+      <section class="trust-strip" aria-label="TrueCart principles">
+        <article><span class="trust-symbol shield">✓</span><div><b>Grounded catalogue</b><small>Every product keeps its source ID</small></div></article>
+        <article><span class="trust-symbol link-symbol">↗</span><div><b>Retailer search shortcuts</b><small>Open official store search pages</small></div></article>
+        <article><span class="trust-symbol bell-symbol">♧</span><div><b>Local price alerts</b><small>Set a target and preview a demo drop</small></div></article>
+      </section>
+
+      <div class="shopping-layout">
+        <section class="catalogue-shelf" id="catalogueShelf" aria-label="Browse sample catalogue">
+          <div class="shelf-heading">
+            <div>
+              <div class="section-kicker">PICK YOUR NEXT FIND</div>
+              <h2>Browse the sample shop</h2>
+              <p>200 products selected evenly across the supplied categories. Prices and stock are frozen sample values.</p>
+            </div>
+            <label class="sort-control">Sort by
+              <select id="browseSort" aria-label="Sort catalogue">
+                <option value="popular">Top rated</option>
+                <option value="value">Best listed discount</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+              </select>
+            </label>
+            <button id="downloadCatalogue" class="export-button" type="button" disabled>↓ Export 200 comparisons</button>
+          </div>
+          <div class="category-filters" id="categoryFilters" aria-label="Catalogue categories">
+            <button class="category-chip active" data-category="">All categories</button>
+          </div>
+          <div class="shelf-meta"><span id="browseCount">Loading sample products…</span><span id="sourceMode">Local snapshot · not live retailer data</span></div>
+          <div class="product-grid browse-grid" id="browseGrid" aria-live="polite"></div>
+          <nav class="pagination" id="browsePagination" aria-label="Product pages"></nav>
+          <div id="comparisonPanel" class="comparison-panel hidden" aria-live="polite"></div>
+          <p class="shelf-note">Amazon.in and Flipkart buttons open retailer searches for each sample title. They are not exact product matches or price feeds.</p>
+        </section>
+
+        <aside class="workspace" id="shoppingDesk" aria-label="TrueCart AI shopping assistant">
+          <div class="assistant-head">
+            <div class="assistant-avatar" aria-hidden="true">✦</div>
+            <div><b>TrueCart AI</b><small>Your evidence-first shopping assistant</small></div>
+            <span class="assistant-online" title="Local demo">●</span>
+          </div>
+          <div class="workspace-head">
+            <div><div class="section-kicker">ASK IN YOUR OWN WORDS</div><h2>What are you looking for?</h2></div>
+            <button class="reset-button" id="newChat" type="button">↺ New chat</button>
+          </div>
+          <span class="catalogue-status" id="catalogueStatus"><i></i> Connecting to catalogue</span>
+          <form id="searchForm" class="search-form">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <label class="sr-only" for="query">Ask about a product or store policy</label>
+            <input id="query" name="q" type="search" maxlength="500" autocomplete="off" placeholder="Try “running shoes under ₹2,000”…">
+            <button class="search-button" type="submit">Ask <span>↗</span></button>
+          </form>
+          <div class="suggestion-row"><span>TRY ASKING</span>
+            <button class="suggestion" data-query="black yoga mat">Black yoga mat</button>
+            <button class="suggestion" data-query="green running shoes under ₹2,000">Shoes under ₹2,000</button>
+            <button class="suggestion" data-query="what is the return window?">Return policy</button>
+            <button class="suggestion" data-query="water resistant earbuds">Water resistant earbuds</button>
+          </div>
+          <div class="results-area" id="resultsArea" aria-live="polite">
+            <div class="welcome-card" id="welcomeCard">
+              <div class="welcome-icon">✳</div>
+              <div><b>Start with a question.</b><p>I’ll answer from the supplied catalogue or policy and show the evidence I used.</p></div>
+            </div>
+            <div id="response" class="response hidden"></div>
+          </div>
+          <div class="assistant-foot">No paid model API · Answers use local catalogue and policy data</div>
+        </aside>
+      </div>
+
+      <section class="alerts-panel" id="alertsPanel" aria-label="Price drop alerts">
+        <div class="alerts-heading">
+          <div><div class="section-kicker">PRICE WATCH</div><h2>Your price targets</h2><p>Choose “Set price alert” on any sample product. Alerts are stored in this browser and checked against the catalogue snapshot.</p></div>
+          <div class="alerts-controls"><span class="alert-count" id="alertCount">0 saved</span><button class="notification-button" id="enableNotifications" type="button">Enable browser notifications</button></div>
+        </div>
+        <div id="alertsList" class="alerts-list"><div class="alerts-empty">No alerts yet. Add one from any product card.</div></div>
+        <p class="alert-disclosure">There is no live retailer price feed or background monitor in this hackathon prototype. The built-in price preview is simulated; it demonstrates how an alert triggers but does not report real price changes.</p>
+      </section>
+
+      <section class="trust-row" aria-label="How TrueCart works">
+        <article><span class="trust-icon mint">⌕</span><div><b>Search the supplied catalogue</b><p>Product facts come from the hackathon data snapshot.</p></div></article>
+        <article><span class="trust-icon peach">▤</span><div><b>See the evidence</b><p>Every product result includes its source ID or policy section.</p></div></article>
+        <article><span class="trust-icon lilac">↗</span><div><b>Honest by design</b><p>Ambiguous? We clarify. Missing? We say so.</p></div></article>
+      </section>
+
+      <footer><span>TRUECART AI <b>·</b> R3 GROUNDED SHOPPING ASSISTANT</span><span>Sample prices only · external retailer prices are not connected</span></footer>
+    </main>
+  </div>
+
+  <div id="compareDock" aria-live="polite"></div>
+  <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <dialog id="aboutDialog" class="about-dialog">
+    <button class="dialog-close" id="closeAbout" aria-label="Close">×</button>
+    <div class="eyebrow">A CLEAR PROMISE</div>
+    <h2>Proof before price.</h2>
+    <p>TrueCart is an offline-first hackathon prototype. Product records and store policies come from the supplied synthetic snapshot. Amazon.in and Flipkart links open searches only; TrueCart does not read or compare their live offers.</p>
+    <div class="dialog-badge">✦ No paid AI API required</div>
+  </dialog>
+
+  <dialog id="alertDialog" class="alert-dialog">
+    <button class="dialog-close" id="closeAlert" aria-label="Close">×</button>
+    <div class="eyebrow">PRICE DROP ALERT</div>
+    <h2 id="alertProductTitle">Set your target</h2>
+    <p class="alert-current" id="alertCurrentPrice"></p>
+    <form id="alertForm">
+      <input id="alertProductId" type="hidden">
+      <label class="target-label" for="targetPrice">Notify me at or below <output id="targetOutput"></output></label>
+      <input id="targetPrice" class="target-range" type="range" min="0" max="10000" step="50">
+      <div class="range-labels"><span>₹0</span><span id="rangeMaxLabel"></span></div>
+      <label class="target-manual" for="targetNumber">Or enter an exact target</label>
+      <div class="target-input-row"><span>₹</span><input id="targetNumber" type="number" min="1" step="1" required><button class="search-button" type="submit">Save alert</button></div>
+      <div class="target-preview"><div><span id="targetProgress"></span></div><small id="targetHint"></small></div>
+    </form>
+    <details class="price-simulator">
+      <summary>Preview an alert with a simulated price change</summary>
+      <label for="demoPriceRange">Demo price <output id="demoPriceValue"></output></label>
+      <input id="demoPriceRange" type="range" min="0" max="10000" step="1">
+      <p id="demoPriceNote">This slider changes a demo value only. It is not a retailer feed.</p>
+    </details>
+    <p class="alert-dialog-note">Saved in this browser. A real future-price alert needs a connected merchant price feed.</p>
+  </dialog>
+  <script src="art.js?v=20261030-4" defer></script>
+  <script src="app.js?v=20261030-4" defer></script>
+</body>
+</html>
